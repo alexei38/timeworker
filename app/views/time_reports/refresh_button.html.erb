@@ -1,0 +1,7 @@
+    <div class="center-block" style="width:200px; background-color:#ccc;">
+      <% if @worked %>
+        <%= button_to 'Закончить работу', stop_work_path, :class => 'btn btn-lg btn-danger btn-block' %>
+      <% else %>
+        <%= button_to 'Начать работу', start_work_path, :class => 'btn btn-lg btn-primary btn-block' %>
+      <% end %>
+    </div>

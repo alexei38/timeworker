@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row" style="margin-top : 100px">
+    <div class="dynamic"></div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	function load_button(){
+		$('div.dynamic').load("<%= refresh_button_path %>");
+	}
+    load_button()
+    setInterval(load_button, 3000);
+});
+</script>

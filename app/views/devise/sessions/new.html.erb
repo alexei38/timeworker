@@ -1,0 +1,29 @@
+<div class="container">
+
+<% flash.each do |type, message| %>
+  <div class="alert <%= bootstrap_class_for(type) %>"><%= message %></div>
+<% end %>
+
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form-signin well"}) do |f| %>
+    <h2 class="form-signin-heading">Авторизация</h2>
+
+    <div class="form-group">
+      <%= f.label :username, 'Имя пользователя' %>
+      <%= f.text_field :username, :autofocus => true, :class => "form-control", :placeholder => "Имя пользователя" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, 'Пароль' %>
+      <%= f.password_field :password, :class => "form-control", :placeholder => "Пароль" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :remember_me, 'Запомнить меня' %>
+      <%= f.check_box :remember_me, :style => "margin-left : 10px" %>
+    </div>
+    <br />
+    <%= f.submit "Войти", :class => "btn btn-lg btn-primary btn-block" %>
+
+  <% end %>
+
+</div>
