@@ -1,0 +1,42 @@
+version: '2'
+services:
+  pgdata:
+    restart: always
+    image: postgres:9.6
+    volumes:
+      - /var/lib/postgresql
+    command: "true"
+  postgres:
+    restart: always
+    image: postgres:9.6
+    volumes_from:
+      - pgdata
+    ports:
+      - "5432:5432"
+    depends_on:
+      - pgdata
+    environment:
+      - POSTGRES_PASSWORD=timeworker
+      - POSTGRES_USER=timeworker
+      - POSTGRES_DB=timeworker
+  web:
+    restart: always
+    build: ./timeworker
+    volumes:
+      - "./timeworker:/opt/app"
+    ports:
+      - "3000:3000"
+    links:
+      - postgres:postgres
+    depends_on:
+      - postgres
+    environment:
+      - RAILS_ENV=production
+    tty: true
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    links:
+      - web:web
