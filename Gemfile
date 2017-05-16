@@ -31,3 +31,4 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'therubyracer'
 gem 'execjs'
+gem "writeexcel"

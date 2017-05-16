@@ -1,0 +1,50 @@
+<div class="container" style="margin-top: 80px; margin-bottom: 20px">
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <select class="form-control" id="month">
+                <%= options_for_select(@months, @current_month) %>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <select class="form-control" id="year">
+                <%= options_for_select(@years, @current_year) %>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-primary" id="button_report">Посторить отчет</button>
+        </div>
+    </div>    
+</div>
+
+<table class="table table-hover" >
+    <thead>
+        <tr class="info">
+          <th>#</th>
+          <th>Имя пользователя</th>
+          <th>ФИО</th>
+          <th>Админ</th>
+          <th>Работает</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        <tr class="<%= cycle('','success') %>">
+            <td><%= link_to user.id, edit_admin_path(user) %></td>
+            <td><%= link_to user.username, edit_admin_path(user) %></td>
+            <td><%= user.fio %></td>
+            <td><%= user.admin? ? 'Да' : 'Нет' %></td>
+            <td><%= user.worked? ? 'Да' : 'Нет' %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#button_report").on('click', function(){
+        var month = $("#month").val();
+        var year = $("#year").val();
+        window.location.href = "<%= report_path %>?date=" + year + "-" + month + "-1";
+    });
+});
+</script>

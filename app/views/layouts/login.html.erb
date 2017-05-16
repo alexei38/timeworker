@@ -13,18 +13,18 @@
     <div class="navbar-header">
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <% if params[:controller] != 'devise/registrations' %>
-            <li><%= link_to "Регистрация", new_user_registration_path %></li>
-          <% else %>
-            <li><%= link_to "Авторизация", new_user_session_path %></li>
-          <% end %>
+          <%= menu_builder %>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
+<div class="container">
 
 <%= yield %>
+
+</div>
+
 </body>
 </html>

@@ -25,16 +25,16 @@ ActiveRecord::Schema.define(version: 20160612153200) do
   add_index "time_reports", ["user_id", "start_time", "end_time"], name: "index_time_reports_on_user_id_and_start_time_and_end_time", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "users",                  default: ""
-    t.string   "username",                            null: false
-    t.string   "string",                 default: ""
+    t.string   "username",                               null: false
     t.string   "fio",                    default: ""
+    t.string   "string",                 default: ""
     t.string   "email",                  default: ""
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.boolean  "admin",                  default: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"

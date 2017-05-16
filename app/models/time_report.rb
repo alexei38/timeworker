@@ -21,6 +21,8 @@ class TimeReport < ActiveRecord::Base
     private
 
     def set_start_time
-        self.start_time = Time.zone.now
+        if self.start_time.nil?
+            self.start_time = Time.zone.now
+        end
     end
 end

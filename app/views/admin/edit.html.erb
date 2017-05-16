@@ -1,6 +1,7 @@
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-signin well"}) do |f| %>
-  <%= devise_error_messages! %>
-    <h2 class="form-signin-heading">Регистрация</h2>
+  <%= form_for(@user, :url => admin_path(@user), :html => {:class => "form-signin well", :method => :put}) do |f| %>
+    <%= devise_error_messages_for(@user) %>
+
+    <h2 class="form-signin-heading">Настройка пользователя</h2>
     
     <div class="form-group">
       <%= f.label :username, 'Имя пользователя' %>
@@ -13,7 +14,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :password, 'Пароль' %>
+      <%= f.label :password, 'Пароль' %> <small><i>Оставьте пустым, если не хотите менять</i></small>
       <%= f.password_field :password, :class => "form-control", :placeholder => "Пароль" %>
     </div>
 
@@ -22,6 +23,11 @@
       <%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Подтверждение пароля" %>
     </div>
 
-    <%= f.submit "Регистрация", :class => "btn btn-lg btn-primary btn-block" %>
+    <div class="form-group">
+      <%= f.label :admin, 'Права администратора' %> 
+      <%= f.check_box :admin, :style => "margin-left : 10px" %>
+    </div>
+
+    <%= f.submit "Обновить", :class => "btn btn-lg btn-primary btn-block" %>
 
   <% end %>

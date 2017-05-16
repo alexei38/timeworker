@@ -9,6 +9,8 @@ TimeWorker::Application.routes.draw do
   get 'refresh_button' => 'time_reports#refresh_button'
   post 'start_work' => 'time_reports#start_work'
   post 'stop_work' => 'time_reports#stop_work'
+  resources :admin
+  get 'report' => 'admin#report'
   #resources :time_reports
 
   # The priority is based upon order of creation:
