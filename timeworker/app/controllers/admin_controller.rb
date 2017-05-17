@@ -154,7 +154,7 @@ class AdminController < ApplicationController
     end
 
     workbook.close
-    send_file Rails.root.join(dir_name, file_name), :filename => 'report.xlsx', :type => "application/xlsx"
+    send_file Rails.root.join(dir_name, file_name), :filename => 'report.xls', :type => "application/vnd.ms-excel"
   end
 
   private
