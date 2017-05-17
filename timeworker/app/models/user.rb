@@ -32,15 +32,11 @@ class User < ActiveRecord::Base
       end_time = day.to_time.in_time_zone.end_of_day
       TimeReport.end_work_for_user(self)
       reports = self.time_reports.where("start_time >= ? and end_time <= ?", start_time, end_time)
-      hours = 0
+      hours = 0.00
       reports.each do |report|
-        end_time_report = report.end_time
-        if end_time_report.nil?
-          end_time_report = Time.zone.now
-        end
-        hours += (end_time_report.hour - report.start_time.hour).to_i
+        hours += (report.end_time - report.start_time)/60/60.to_f.round(2)
       end
-      hours.to_s
+      hours.round(2)
     end
 
     private

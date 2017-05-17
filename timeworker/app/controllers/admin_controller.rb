@@ -69,7 +69,7 @@ class AdminController < ApplicationController
 
     alphabet = [('a'..'z'), ('A'..'Z'), (0..9)].map { |i| i.to_a }.flatten
     file_name = (0...25).map { alphabet[rand(alphabet.length)] }.join
-    file_name = "#{file_name}.xlsx"
+    file_name = "#{file_name}.xls"
     full_path = Rails.root.join(dir_name, file_name).to_s
 
     workbook = WriteExcel.new(full_path)
@@ -142,7 +142,7 @@ class AdminController < ApplicationController
         else
           fmt = format_work
         end
-        hours = user.hours_in_day(day).to_i
+        hours = user.hours_in_day(day)
         if hours > 0
           worksheet.write(row_id + skip_row, skip_col + col_id, hours, fmt)
         else
