@@ -1,7 +1,6 @@
 version: '2'
 services:
   pgdata:
-    restart: always
     image: postgres:9.6
     volumes:
       - /var/lib/postgresql
